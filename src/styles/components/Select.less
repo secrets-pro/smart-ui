@@ -1,0 +1,15 @@
+@import "../mixins/index.less";
+.sm-select {
+  width: 100%;
+  li + li {
+    margin-top: 2px;
+  }
+  .sm-ionic.sm-ionic-ios-arrow-up {
+    .transition(all);
+    transform: rotate(-180deg);
+    &.active {
+      .transition(all);
+      transform: rotate(0deg);
+    }
+  }
+}

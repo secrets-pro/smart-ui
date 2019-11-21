@@ -1,0 +1,110 @@
+.boxShadow(@value,@opacity) {
+  box-shadow: 0 6px 12px 0 fadein(@value, @opacity);
+}
+.btnOverider(@type,@color) {
+  .ivu-btn-@{type} {
+    background-color: @color;
+    color: #fff;
+    border-color: @color;
+    .boxShadow(@color, 0.1);
+    // padding: 5px 17px;
+    &:hover {
+      color: #fff;
+      background-color: lighten(@color, 5%);
+      border: 1px solid lighten(@color, 5%);
+      .boxShadow(@color, 0.1);
+    }
+    &:active,
+    &:focus,
+    &:visited {
+      background-color: @color;
+      color: #fff;
+      border-color: @color;
+      .boxShadow(@color, 0.1);
+    }
+  }
+}
+.theme(@type,@value) {
+  .bg-@{type} {
+    background-color: @value;
+  }
+}
+.activetheme(@type,@value) {
+  .active-@{type} {
+    background-color: @value;
+    color: #fff !important;
+  }
+}
+
+.fontColor(@type,@value) {
+  .color-@{type} {
+    color: @value;
+  }
+}
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  &.col-@{i} {
+    flex: 0 0 (@i * 100% / @n);
+    width: (@i * 100% / @n);
+    padding: 2px;
+  }
+  .generate-columns(@n, (@i + 1));
+}
+
+.btnBgColor(@type,@value) {
+  &.button-@{type} {
+    background-color: @value;
+    border: 1px solid @value;
+    //.boxShadow(@value, 0.1);
+    &:hover {
+      background-color: darken(@value, 5%);
+      border: 1px solid darken(@value, 5%);
+    }
+  }
+  &.button-label-@{type} {
+    background-color: lighten(@value, 30%);
+    color: @value !important;
+    cursor: text !important;
+  }
+}
+
+//transition
+.motion-common() {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.make-motion(@className, @keyframeName) {
+  .@{className}-enter-active,
+  .@{className}-appear {
+    .motion-common();
+    animation-play-state: paused;
+  }
+  .@{className}-leave-active {
+    .motion-common();
+    animation-play-state: paused;
+  }
+  .@{className}-enter-active,
+  .@{className}-appear {
+    animation-name: ~"@{keyframeName}In";
+    animation-play-state: running;
+  }
+  .@{className}-leave-active {
+    animation-name: ~"@{keyframeName}Out";
+    animation-play-state: running;
+  }
+}
+
+.fade-motion(@className, @keyframeName) {
+  .make-motion(@className, @keyframeName);
+  .@{className}-enter-active,
+  .@{className}-appear {
+    opacity: 0;
+    animation-timing-function: linear;
+  }
+  .@{className}-leave-active {
+    animation-timing-function: linear;
+  }
+}
+.transition(@prop) {
+  transition: @prop 0.3s ease-in-out;
+}
