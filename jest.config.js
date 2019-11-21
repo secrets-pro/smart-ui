@@ -17,8 +17,8 @@ module.exports = {
     "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
   ],
   testURL: "http://localhost/",
-  collectCoverage: true,
   collectCoverageFrom: ["src/components/**/*.{js,vue}", "!**/node_modules/**"],
   coverageReporters: ["html", "text-summary"],
-  coverageDirectory: "coverage"
+  coverageDirectory: "./coverage/",
+  collectCoverage: true
 };
