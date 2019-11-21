@@ -40,8 +40,8 @@
 <script>
 import Input from "../Input/Input.vue";
 import Icon from "../Icon/Icon.vue";
-import DropDown from "../DropDown/DropDown";
-import DropDownItem from "../DropDown/DropDownItem";
+import DropDown from "../DropDown/DropDown.vue";
+import DropDownItem from "../DropDown/DropDownItem.js";
 
 export default {
   name: "sm-select",
