@@ -14,8 +14,9 @@ before_script:
 
 # 无其他依赖项所以执行npm run build 构建就行了
 script:
-  - yarn run test & codecov
+  - yarn run test
   - yarn run build
+  - yarn run codecov
 
 after_script:
   #- cp favicon.ico docs/favicon.ico

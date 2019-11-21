@@ -17,7 +17,8 @@
     "test": "jest",
     "build:style": "gulp --gulpfile ./config/gulp.js",
     "serve": "webpack-dev-server  --config ./config/webpack.dev.js",
-    "build:clean": "rm -rf ./dist"
+    "build:clean": "rm -rf ./dist",
+    "codecov": "codecov"
   },
   "keywords": [
     "rollup",
