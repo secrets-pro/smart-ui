@@ -6,6 +6,11 @@
   "module": "dist/sm-ui.esm.js",
   "unpkg": "dist/sm-ui.js",
   "jsdelivr": "dist/sm-ui.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/secrets-pro/smart-ui.git"
+  },
+  "homepage": "https://github.com/secrets-pro/smart-ui",
   "scripts": {
     "build": "npm run build:clean && npm run build:style && rollup --config ./config/rollup.config.js",
     "lint": "eslint --ext .vue,.js src/",
@@ -13,10 +18,6 @@
     "build:style": "gulp --gulpfile ./config/gulp.js",
     "serve": "webpack-dev-server  --config ./config/webpack.dev.js",
     "build:clean": "rm -rf ./dist"
-  },
-  "repository": {
-    "type": "git",
-    "url": "tes"
   },
   "keywords": [
     "rollup",
