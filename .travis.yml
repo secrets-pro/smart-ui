@@ -8,7 +8,7 @@ cache:
 # S: Build Lifecycle
 install:
   - yarn
-  - yarn add -g codecov
+  - npm install -g codecov
 
 before_script:
 
