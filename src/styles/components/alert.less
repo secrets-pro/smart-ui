@@ -1,0 +1,48 @@
+.sm-alert {
+  min-width: 320px;
+  line-height: 1.67;
+  box-sizing: border-box;
+  color: #324558;
+  margin: 0;
+  list-style: none;
+  position: relative;
+  padding: 12px 12px 12px 38px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  flex-flow: row nowrap;
+  &&-info {
+    border-color: rgba(0, 0, 0, 0);
+    background-color: rgba(199, 222, 239, 0.54);
+    color: #326e93;
+  }
+  &&-error {
+    border-color: #f4bfbd;
+    background-color: #fff6f6;
+  }
+  &&-success {
+    border-color: #bdf4e2;
+    background-color: #f6fffc;
+  }
+  &&-warn {
+    border-color: #f5e199;
+    background-color: #fff9e5;
+    color: #697886;
+  }
+  &-icon {
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 10px;
+    text-align: center;
+    & > img {
+      vertical-align: middle;
+    }
+  }
+  &-content {
+    text-align: left;
+  }
+}

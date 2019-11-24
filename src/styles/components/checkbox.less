@@ -1,0 +1,70 @@
+.trans() {
+  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.checkbox {
+  cursor: pointer;
+  position: relative;
+  display: inline-block !important;
+  user-select: none;
+  margin-right: 4px;
+  line-height: initial;
+  & > input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    opacity: 0;
+    outline: none !important;
+    cursor: pointer;
+    margin-right: 4px;
+  }
+  &:before {
+    border-radius: 2px;
+    box-shadow: none;
+    border: 1px solid @border-color;
+    top: 1px;
+    width: 16px;
+    height: 16px;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    outline: none !important;
+    cursor: pointer;
+    .trans();
+  }
+  &.checked:before,
+  &.checked:hover:before,
+  &.indeterminate:before,
+  &.indeterminate:hover:before {
+    border-color: transparent;
+    background-color: @primary-color; //#55bc8a;
+    .trans();
+  }
+  .pos() {
+    left: 6px;
+    top: 3px;
+    width: 4px;
+    height: 10px;
+    .trans();
+  }
+  &.checked:after {
+    .pos();
+    position: absolute;
+    border-style: solid;
+    border-color: #fff;
+    transform: rotate(45deg);
+    content: "";
+    display: block;
+    will-change: transform;
+    backface-visibility: hidden;
+    border-width: 0 1px 1px 0;
+  }
+  &.indeterminate:after {
+    .pos();
+    position: absolute;
+    border: solid #fff;
+    border-width: 0 1px 0 0;
+    transform: rotate(90deg);
+    content: "";
+    display: block;
+  }
+}

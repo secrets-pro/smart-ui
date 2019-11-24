@@ -1,0 +1,21 @@
+.button-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  //.boxShadow(@value, 0.1);
+  & > button {
+    border-radius: initial;
+    box-shadow: none !important;
+    & + button {
+      margin-left: 6px;
+    }
+    // &:first-child {
+    //   border-top-left-radius: 5px;
+    //   border-bottom-left-radius: 5px;
+    // }
+    // &:last-child {
+    //   border-top-right-radius: 5px;
+    //   border-bottom-right-radius: 5px;
+    // }
+  }
+}
