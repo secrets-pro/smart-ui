@@ -5,6 +5,7 @@
     </span>
     <input
       ref="input"
+      :placeholder="placeholder"
       :readonly="readonly"
       :value="currentValue"
       :class="{ 'sm-input': true, 'width-suffix': !!$slots.suffix }"
@@ -18,7 +19,8 @@ export default {
   name: "sm-input",
   props: {
     value: [String, Number],
-    readonly: Boolean
+    readonly: Boolean,
+    placeholder: String
   },
   data() {
     return {

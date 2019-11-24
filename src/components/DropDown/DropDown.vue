@@ -23,8 +23,8 @@
   </div>
 </template>
 <script>
-import { getOffset } from "../../utils";
-import clickout from "../../directives/clickout";
+import { getOffset } from "../../utils/index";
+import clickout from "../../directives/clickout/index";
 
 export default {
   name: "sm-dropdown",
