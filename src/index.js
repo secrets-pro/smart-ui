@@ -3,7 +3,6 @@ import Input from "./components/Input";
 import Select from "./components/Select";
 import Icon from "./components/Icon";
 import Button from "./components/Button";
-import Table from "./components/Table";
 import TableOperate from "./components/TableOperate";
 import TableSearch from "./components/TableSearch";
 import Checkbox from "./components/Checkbox";
@@ -12,7 +11,6 @@ import Alert from "./components/Alert";
 import Breadcrumb from "./components/Breadcrumb";
 import Label from "./components/Label";
 import Loading from "./components/Loading";
-import Pagination from "./components/Pagination";
 import Spin from "./components/Spin";
 
 import directives from "./directives";
@@ -25,10 +23,8 @@ const components = {
   Select,
   Icon,
   Label,
-  Pagination,
   Loading,
   Checkbox,
-  Table,
   TableSearch,
   TableOperate,
   StatusIcon,

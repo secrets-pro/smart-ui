@@ -1,23 +1,67 @@
 <template>
-  <div class="sm-search">
-    <input
-      ref="input"
-      class="form-control"
-      @keyup.enter="enter"
-      @input="input"
-      :value="currentValue"
-      @focus="focus"
-      :disabled="currentDisable"
-      :placeholder="placeholder"
-    />
-    <span>
-      <span>
-        <sm-icon type="search" size="18"></sm-icon>
+  <div class="sm-search" :class="{ filters: !!filters.length, disabled: currentDisable }">
+    <span class="left-icon">
+      <sm-icon type="search" size="16"></sm-icon>
+    </span>
+    <div class="filters">
+      <span class="tag" v-for="(item, index) in tags" :key="index">
+        {{ item.label }}
+        <sm-svg-icon name="close" size="12" @click="closeIcon(index)"></sm-svg-icon>
       </span>
+      <div class="autosuggest">
+        <sm-dropdown
+          style="width:100%;"
+          :styles="{ minWidth: '200px' }"
+          placement="right"
+          ref="dropdown"
+          v-if="filters.length"
+          @on-click="chooseItem"
+          trigger="custom"
+        >
+          <input
+            ref="input"
+            class="form-control"
+            @keyup.enter="enter"
+            @input="input"
+            :value="currentValue"
+            @focus="focus"
+            :disabled="currentDisable"
+            :placeholder="placeholder"
+          />
+          <template slot="content" v-if="!options.length">
+            <sm-dropdown-item
+              :name="'' + item.id"
+              v-for="(item, index) in noFilters"
+              :key="index"
+            >{{ item.label }}</sm-dropdown-item>
+          </template>
+          <template slot="content" v-if="options.length">
+            <sm-dropdown-item
+              :name="'' + index"
+              v-for="(item, index) in options"
+              :key="index"
+            >{{ item.label }}</sm-dropdown-item>
+          </template>
+        </sm-dropdown>
+        <input
+          v-else
+          ref="input"
+          class="form-control"
+          @keyup.enter="enter"
+          :disabled="currentDisable"
+          :value="currentValue"
+          :placeholder="placeholder"
+          @input="input"
+        />
+      </div>
+    </div>
+    <span class="right-icon" @click="clear" v-show="currentValue || tags.length">
+      <img :src="clearsvg" />
     </span>
   </div>
 </template>
 <script>
+import clearsvg from "../../assets/svg/clear.svg";
 export default {
   name: "sm-search-input",
   props: {
@@ -51,6 +95,7 @@ export default {
   },
   data() {
     return {
+      clearsvg,
       currentValue: this.value,
       currentDisable: this.disabled,
       tags: [],
@@ -95,7 +140,11 @@ export default {
         }
       }
     },
-    focus() {},
+    focus() {
+      if (this.showFilter) {
+        this.$refs.dropdown.active = true;
+      }
+    },
     enter() {
       if (this.options.length) {
         return;
@@ -103,7 +152,7 @@ export default {
       if (this.filters.length) {
         if (!this.showFilter) {
           let choosed = this.currentFilters[this.lastFilterIndex];
-          if (!choosed.checked) {
+          if (choosed && !choosed.checked) {
             let v = this.$refs.input.value;
             this.tags.push({
               label: v,
@@ -149,12 +198,13 @@ export default {
     clear() {
       let v = "";
       if (this.filters.length) {
+        this.options = [];
         this.lastFilterIndex = -1;
         this.tags = [];
         this.currentFilters = this.filters.map((el, index) => {
           return { ...el, checked: false, id: index };
         });
-        this.options = [];
+
         this.$emit("input", {});
       } else {
         this.$emit("input", v);

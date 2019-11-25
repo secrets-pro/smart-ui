@@ -1,24 +1,104 @@
 .sm-search {
+  display: flex;
+  border-radius: 5px;
+  padding: 3px 0;
   position: relative;
-  flex: 1;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #e2e5ec;
+  transition: all 0.3s ease-in-out;
+  ::-webkit-input-placeholder {
+    color: #999;
+    font-size: 12px;
+  }
+  &.circle {
+    border-radius: 50px;
+  }
+  &:hover {
+    border-color: @primary-color;
+    box-shadow: 0 0 2px @primary-color, 0 0 4px #fff;
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+
   & > span {
     position: absolute;
-    height: 100%;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    &.left-icon {
+      left: 12px;
+    }
+    &.right-icon {
+      right: 12px;
+    }
+  }
+  & > .filters {
+    flex: 1 1;
+    align-items: flex-start;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    top: 0;
-    width: 3.2rem;
-    & > span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      & > i {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 0;
-        color: #74788d;
+    padding-left: 35px;
+    flex-wrap: wrap;
+
+    justify-content: flex-start;
+    border: 0 none;
+    .tag {
+      display: inline-block;
+      position: relative;
+      top: 50%;
+
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: #fff !important;
+      background-color: #273247 !important;
+      padding: 5px 25px 5px 12px;
+      border-radius: 50px;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      margin-right: 3px;
+      & + .tag {
+        margin-left: 3px;
+      }
+      & > .svg-icons {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    .autosuggest {
+      flex: 1;
+
+      & input {
+        border: 1px solid transparent;
+        width: 100%;
+        opacity: 0.6;
+        border-radius: 5px;
+        border-color: transparent;
+        background-color: #fff;
+        padding: 5px 0 5px 3px;
+        color: @dark-color;
+        height: auto;
+        line-height: 20px;
+        outline: none;
+        font-weight: 600;
+        .transition(all);
+        caret-color: @dark-color;
+        border: none;
+        &:focus {
+          //background-color: #fff;
+          //border-color: #b5c2c9 !important;
+          box-shadow: none !important;
+        }
+        &:disabled {
+          cursor: not-allowed;
+        }
       }
     }
   }
