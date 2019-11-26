@@ -6,7 +6,13 @@
       indeterminate: checkStatus ? false : indeterminate
     }"
   >
-    <input type="checkbox" ref="checkbox" :value="name" :checked="checkStatus" @input="input" />
+    <input
+      type="checkbox"
+      ref="checkbox"
+      :value="name"
+      :checked="checkStatus"
+      @change="input"
+    />
     <slot />
   </label>
 </template>
@@ -48,12 +54,13 @@ export default {
           parent._provided.boxGroup)
       ) {
         this.group = true;
-        let data = parent.value.includes(this.name);
+        let data = parent.value.includes(this.trueValue || this.name);
         this.currentValue = data;
         this.checkStatus = this.currentValue;
       }
     },
     input() {
+      this.currentValue = !this.currentValue;
       if (this.trueValue) {
         this.checkStatus = !this.checkStatus;
         this.$emit(
@@ -65,7 +72,6 @@ export default {
           this.checkStatus ? this.trueValue : this.falseValue
         );
       } else {
-        this.currentValue = !this.currentValue;
         this.$emit("input", this.currentValue);
         this.$emit("on-change", this.currentValue);
       }
@@ -76,7 +82,7 @@ export default {
       if (this.group) {
         let parent = this.$parent;
         parent.change({
-          name: this.name,
+          name: this.trueValue || this.name,
           value: this.currentValue
         });
       }

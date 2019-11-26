@@ -1,6 +1,13 @@
 <template>
-  <sm-dropdown placement="left" :styles="{ minWidth: '140px' }" @on-click="chooseItem">
-    <sm-icon type="more_vert" v-if="!buttonText && !!setting.some(this.filter)" />
+  <sm-dropdown
+    placement="left"
+    :styles="{ minWidth: '140px' }"
+    @on-click="chooseItem"
+  >
+    <sm-icon
+      type="more_vert"
+      v-if="!buttonText && !!setting.some(this.filter)"
+    />
     <sm-button type="default" v-if="buttonText">{{ buttonText }}</sm-button>
     <template slot="content">
       <sm-dropdown-item
@@ -27,11 +34,13 @@ export default {
     "sm-dropdown-item": DropDownItem
   },
   props: {
-    setting: Array,
+    setting: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
     buttonText: String
-  },
-  data() {
-    return {};
   },
   methods: {
     chooseItem(name) {

@@ -22,8 +22,7 @@
 [
   {
     "label": "名称",
-    "name": "name",
-    "prefix": "前缀"
+    "name": "name"
   },
   {
     "label": "年龄",

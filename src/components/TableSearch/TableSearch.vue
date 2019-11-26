@@ -1,12 +1,16 @@
 <template>
-  <div class="sm-search" :class="{ filters: !!filters.length, disabled: currentDisable }">
+  <div
+    class="sm-search"
+    :class="{ filters: !!filters.length, disabled: currentDisable }"
+  >
     <span class="left-icon">
       <sm-icon type="search" size="16"></sm-icon>
     </span>
     <div class="filters">
       <span class="tag" v-for="(item, index) in tags" :key="index">
         {{ item.label }}
-        <sm-svg-icon name="close" size="12" @click="closeIcon(index)"></sm-svg-icon>
+
+        <clearsvg width="12" height="12" @click="closeIcon(index)" />
       </span>
       <div class="autosuggest">
         <sm-dropdown
@@ -33,14 +37,16 @@
               :name="'' + item.id"
               v-for="(item, index) in noFilters"
               :key="index"
-            >{{ item.label }}</sm-dropdown-item>
+              >{{ item.label }}</sm-dropdown-item
+            >
           </template>
           <template slot="content" v-if="options.length">
             <sm-dropdown-item
               :name="'' + index"
               v-for="(item, index) in options"
               :key="index"
-            >{{ item.label }}</sm-dropdown-item>
+              >{{ item.label }}</sm-dropdown-item
+            >
           </template>
         </sm-dropdown>
         <input
@@ -55,17 +61,30 @@
         />
       </div>
     </div>
-    <span class="right-icon" @click="clear" v-show="currentValue || tags.length">
-      <img :src="clearsvg" />
+    <span
+      class="right-icon"
+      @click="clear"
+      v-show="currentValue || tags.length"
+    >
+      <clearsvg />
     </span>
   </div>
 </template>
 <script>
-import clearsvg from "../../assets/svg/clear.svg";
+import Icon from "../Icon/Icon.vue";
+import DropDown from "../DropDown/DropDown.vue";
+import DropDownItem from "../DropDown/DropDownItem.js";
+import clearicon from "./clearicon.vue";
 export default {
   name: "sm-search-input",
+  components: {
+    "sm-icon": Icon,
+    "sm-dropdown": DropDown,
+    "sm-dropdown-item": DropDownItem,
+    clearsvg: clearicon
+  },
   props: {
-    value: [String, Object],
+    value: String,
     disabled: Boolean,
     filters: {
       type: Array,
@@ -83,8 +102,13 @@ export default {
 
   watch: {
     value(n) {
-      if (typeof n === "string") {
-        this.currentValue = n;
+      this.currentValue = n;
+    },
+    filters(n) {
+      if (n) {
+        this.currentFilters = n.map((el, index) => {
+          return { ...el, checked: false, id: index };
+        });
       }
     }
   },
@@ -95,7 +119,6 @@ export default {
   },
   data() {
     return {
-      clearsvg,
       currentValue: this.value,
       currentDisable: this.disabled,
       tags: [],

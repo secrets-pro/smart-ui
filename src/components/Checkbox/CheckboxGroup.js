@@ -11,8 +11,14 @@ export default {
       return [];
     }
   },
+  data() {
+    return {
+      currentValue: this.value
+    };
+  },
   watch: {
     value(n, o) {
+      this.currentValue = n;
       if (JSON.stringify(n) !== JSON.stringify(o)) {
         this.updateChild();
       }
@@ -25,15 +31,16 @@ export default {
     change(params) {
       let { name, value } = params;
       if (value) {
-        if (!this.value.includes(name)) {
-          let nv = [...this.value, name];
+        if (!this.currentValue.includes(name)) {
+          let nv = [...this.currentValue, name];
+          this.currentValue = nv;
           this.$emit("input", nv);
         }
       } else {
-        let indx = this.value.indexOf(name);
+        let indx = this.currentValue.indexOf(name);
         if (indx > -1) {
-          this.value.splice(indx, 1);
-          this.$emit("input", this.value);
+          this.currentValue.splice(indx, 1);
+          this.$emit("input", this.currentValue);
         }
       }
     },
