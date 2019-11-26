@@ -9,6 +9,7 @@ import alert from "./components/alert.vue";
 import label from "./components/label.vue";
 import status from "./components/status.vue";
 import button from "./components/button.vue";
+import checkbox from "./components/checkbox.vue";
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -69,6 +70,13 @@ const router = new VueRouter({
         title: "button"
       },
       component: button
+    },
+    {
+      path: "/checkbox",
+      meta: {
+        title: "checkbox"
+      },
+      component: checkbox
     }
   ]
 });

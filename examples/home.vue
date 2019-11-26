@@ -21,7 +21,8 @@ export default {
         "select",
         "label",
         "status",
-        "button"
+        "button",
+        "checkbox"
       ]
     };
   }
