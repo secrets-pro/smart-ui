@@ -5,3 +5,12 @@
 [![codecov](https://codecov.io/gh/secrets-pro/smart-ui/branch/master/graph/badge.svg)](https://codecov.io/gh/secrets-pro/smart-ui)
 
 A Vuejs UI framework
+
+## components develope plan
+
+- [ ] Row,Col
+- [ ] Switch
+- [ ] Select,Option,OptionGroup
+- [ ] Message
+- [ ] Modal
+- [ ] RadioGroup,Radio
