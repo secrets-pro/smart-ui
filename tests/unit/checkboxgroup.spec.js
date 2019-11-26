@@ -29,9 +29,21 @@ describe("CheckboxGroup", () => {
     Checkboxs.at(1).trigger("click");
     expect(Checkboxs.at(1).vm.checkStatus).toBe(true);
     wrapper.setProps({
-      value: ["hello", "world"]
+      value: ["world"]
     });
+
+    expect(Checkboxs.at(0).vm.checkStatus).toBe(false);
+    expect(Checkboxs.at(1).vm.checkStatus).toBe(true);
+    Checkboxs.at(0)
+      .find("input")
+      .setChecked(true);
+    expect(Checkboxs.at(0).vm.group).toBe(true);
     expect(Checkboxs.at(0).vm.checkStatus).toBe(true);
     expect(Checkboxs.at(1).vm.checkStatus).toBe(true);
+    expect(wrapper.vm.currentValue.length).toBe(2);
+    Checkboxs.at(0)
+      .find("input")
+      .setChecked(false);
+    expect(wrapper.vm.currentValue.length).toBe(1);
   });
 });
