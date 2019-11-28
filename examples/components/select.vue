@@ -1,9 +1,12 @@
 <template>
-  <sm-select
-    style="width:200px;"
-    v-model="select"
-    :options="options"
-  ></sm-select>
+  <div>
+    <sm-select style="width:200px;" v-model="select">
+      <sm-option value="xxx" label="xxxx"></sm-option>
+      <sm-option value="xxx1" label="xxxx1"></sm-option>
+      <sm-option value="xxx2">xxxx2</sm-option>
+    </sm-select>
+    <sm-input v-model="select"></sm-input>
+  </div>
 </template>
 <script>
 export default {

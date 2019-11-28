@@ -10,7 +10,7 @@ import label from "./components/label.vue";
 import status from "./components/status.vue";
 import button from "./components/button.vue";
 import checkbox from "./components/checkbox.vue";
-
+import Breadcrumb from "./components/Breadcrumb.vue";
 Vue.use(VueRouter);
 const router = new VueRouter({
   mode: "hash",
@@ -77,6 +77,13 @@ const router = new VueRouter({
         title: "checkbox"
       },
       component: checkbox
+    },
+    {
+      path: "/Breadcrumb",
+      meta: {
+        title: "Breadcrumb"
+      },
+      component: Breadcrumb
     }
   ]
 });

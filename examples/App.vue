@@ -19,5 +19,6 @@ body,
 #app {
   height: 100vh;
   padding: 24px;
+  background-color: #f9f9fc;
 }
 </style>
