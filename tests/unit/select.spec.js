@@ -1,29 +1,26 @@
 /* eslint-disable no-undef */
-import { mount } from "@vue/test-utils";
+import { mount, createLocalVue } from "@vue/test-utils";
 import smUI from "@/";
+import Option from "@/components/Select/Option";
 const { Select } = smUI;
+const localVue = createLocalVue();
+localVue.component("sm-option", Option);
 describe("select", () => {
   let value = "1";
   let wrapper = mount(Select, {
+    localVue,
     propsData: {
-      value: value,
-      options: [
-        {
-          text: "11",
-          value: "1"
-        },
-        {
-          text: "12",
-          value: "2"
-        }
-      ]
+      value: value
+    },
+    slots: {
+      default: `
+      <sm-option value="1">11</sm-option>
+      <sm-option value="2" label="12"></sm-option>
+       `
     }
   });
   test("props ", () => {
     expect(wrapper.props().value).toBe("1");
-    expect(wrapper.props().propValue).toBe("value");
-    expect(wrapper.props().propText).toBe("text");
-    expect(wrapper.props().options.length).toBe(2);
     expect(wrapper.props().placeholder).toBe("请选择");
   });
   test("event", () => {
@@ -36,7 +33,7 @@ describe("select", () => {
     expect(wrapper.vm.currentValue).toBe("1");
     expect(wrapper.vm.currentText).toBe("11");
   });
-  test("on-click", () => {
+  test("setProps", () => {
     wrapper.setProps({ value: "2" });
     expect(wrapper.vm.currentValue).toBe("2");
     expect(wrapper.vm.currentText).toBe("12");
