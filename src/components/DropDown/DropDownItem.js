@@ -8,6 +8,16 @@ export default {
       type: Boolean
     }
   },
+  watch: {
+    selected(n) {
+      this.currentSelected = n;
+    }
+  },
+  data() {
+    return {
+      currentSelected: this.selected
+    };
+  },
   render(h) {
     var that = this;
     let slots = [this.$slots.default];
@@ -16,7 +26,7 @@ export default {
       {
         class: {
           "sm-dropdown-item": true,
-          selected: this.selected,
+          selected: this.currentSelected,
           type: this.type
         },
 

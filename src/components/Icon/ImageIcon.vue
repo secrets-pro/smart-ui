@@ -7,7 +7,7 @@ import info from "../../assets/svg/info.svg";
 import success from "../../assets/svg/success.svg";
 import error from "../../assets/svg/error.svg";
 import warn from "../../assets/svg/warn.svg";
-import back from "../../assets/svg/warn.svg";
+import back from "../../assets/svg/back.svg";
 
 export default {
   name: "sm-img-icon",
