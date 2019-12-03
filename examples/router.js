@@ -11,6 +11,8 @@ import status from "./components/status.vue";
 import button from "./components/button.vue";
 import checkbox from "./components/checkbox.vue";
 import Breadcrumb from "./components/Breadcrumb.vue";
+import spin from "./components/spin.vue";
+
 Vue.use(VueRouter);
 const router = new VueRouter({
   mode: "hash",
@@ -84,6 +86,13 @@ const router = new VueRouter({
         title: "Breadcrumb"
       },
       component: Breadcrumb
+    },
+    {
+      path: "/spin",
+      meta: {
+        title: "spin"
+      },
+      component: spin
     }
   ]
 });

@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-import { getOffset } from "../../utils/index";
+// import { getOffset } from "../../utils/index";
 import clickout from "../../directives/clickout/index";
 import Input from "../Input/Input.vue";
 import Icon from "../Icon/Icon.vue";
@@ -41,7 +41,6 @@ export default {
     "sm-input": Input,
     Icon
   },
-  inheritAttrs: false,
   directives: {
     "click-out": clickout
   },

@@ -1,8 +1,9 @@
 <template>
   <div>
-    <sm-status :type="type" v-for="(type, index) in statuses" :key="index">{{
-      type
-    }}</sm-status>
+    <div v-for="(type, index) in statuses" :key="index">
+      <sm-status :type="type"></sm-status>
+      <span :class="[`color-${type}`]">{{type}}</span>
+    </div>
   </div>
 </template>
 <script>
