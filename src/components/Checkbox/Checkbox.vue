@@ -6,13 +6,7 @@
       indeterminate: checkStatus ? false : indeterminate
     }"
   >
-    <input
-      type="checkbox"
-      ref="checkbox"
-      :value="name"
-      :checked="checkStatus"
-      @change="input"
-    />
+    <input type="checkbox" ref="checkbox" :value="name" :checked="checkStatus" @change="input" />
     <slot />
   </label>
 </template>
@@ -72,6 +66,7 @@ export default {
           this.checkStatus ? this.trueValue : this.falseValue
         );
       } else {
+        this.checkStatus = this.currentValue;
         this.$emit("input", this.currentValue);
         this.$emit("on-change", this.currentValue);
       }
